@@ -19,7 +19,7 @@
         DB_NAME="nerdbug"
         DB_PASS="your password from setting up"
         SECRET_KEY="random key"
-        JWT_EXPIRES_IN='2 days'
+
 
 A migration file has been created to propagate the database fields
 
