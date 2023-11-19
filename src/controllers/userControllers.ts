@@ -11,7 +11,7 @@ import {
 } from "./database";
 export const CreateUser: RequestHandler = async (req, res, next) => {
   try {
-    const newUser = await createUser(db, req.body);
+    const newUser = await createUser(req.body);
     const { firstName, lastName, email, role, id, createdAt } = newUser;
     const scope = {
       id,
@@ -47,7 +47,7 @@ export const getAllUsers: RequestHandler = async (req, res, next) => {
 
 export const getUser: RequestHandler = async (req, res, next) => {
   try {
-    const user = await findOneUser(db, req.params.id);
+    const user = await findOneUser(req.params.id);
 
     if (!user) {
       return next(new AppError("No User With That Id Found", 404));
@@ -85,11 +85,7 @@ export const updateUser: RequestHandler = async (req, res, next) => {
 
 export const deleteUser: RequestHandler = async (req, res, next) => {
   try {
-    const deletedResult = deleteOneUser(db, req.params.id);
-
-    // if (!deletedResult) {
-    //   return next(new AppError("No User With That Id Found", 404));
-    // }
+    const deletedResult = deleteOneUser(req.params.id);
 
     res.status(204).json({
       status: "Success",

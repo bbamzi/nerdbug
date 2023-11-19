@@ -1,10 +1,11 @@
 import express, { Request, Response, NextFunction } from "express";
-import db from "./models";
+import { UUIDV4 } from "sequelize";
 import { json } from "body-parser";
-import { users } from "./seeders/user";
+
 import userRoutes from "./routes/userRoutes";
 const globalErrorHandler = require("./controllers/error");
 import { AppError } from "./util/appError";
+
 var cookieParser = require("cookie-parser");
 export const app = express();
 
@@ -26,9 +27,3 @@ app.all("*", (req: Request, res: Response, next: NextFunction) => {
 });
 
 app.use(globalErrorHandler);
-
-// db.sequelize.sync().then(() => {
-//   app.listen(port, () => {
-//     console.log(`App listen `);
-//   });
-// });

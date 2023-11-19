@@ -8,7 +8,7 @@ import db from "../models";
 import { decode } from "punycode";
 import bcrypt from "bcrypt";
 
-const signToken = (id: string) => {
+export const signToken = (id: string) => {
   return jwt.sign({ id }, process.env.SECRET_KEY as string, {
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
@@ -82,8 +82,6 @@ export const login: RequestHandler = async (req, res, next) => {
     where: { email: req.body.email },
     attributes: ["email", "id", "password"],
   });
-
-  // console.log(password, user.password);
 
   if (!user || !(await bcrypt.compare(password, user.password))) {
     return next(new AppError("Incorrect Email or Password", 401));

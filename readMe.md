@@ -23,7 +23,9 @@
 
 A migration file has been created to propagate the database fields
 
-## npm run dev
+## npm run dev to run app
+
+# npm test to run test cases
 
 this will create a table in your database
 
